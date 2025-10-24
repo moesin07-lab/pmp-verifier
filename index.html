@@ -3,81 +3,54 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>PMP Experience Tracker — Moe Myint Kyal Sin</title>
+<title>Moe Myint Kyal Sin — PMP Experience Tracker</title>
 <meta name="description" content="Survey-style PMP experience log and verification letter generator for Moe Myint Kyal Sin." />
 <meta name="theme-color" content="#fdb813" />
+<link rel="icon" type="image/png" href="sunflower.png" />
 <style>
-  :root{
-    --gold:#fdb813; --amber:#f6c90e; --ink:#232323; --muted:#6b6b6b;
-    --bg:#fffaf0; --card:#ffffff; --line:#f2e5b9; --pill:#fff7db;
-  }
+  :root{--gold:#fdb813;--amber:#f6c90e;--ink:#232323;--muted:#6b6b6b;--bg:#fffaf0;--card:#ffffff;--line:#f2e5b9;--pill:#fff7db;}
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-  a{color:#111;text-decoration:none}
-  a:hover{text-decoration:underline}
-  .hero{
-    background:linear-gradient(92deg,var(--amber),var(--gold));
-    padding:22px 14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
-  }
-  .hero-inner{max-width:1100px;margin:0 auto;display:flex;gap:16px;align-items:center}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+  a{color:#111;text-decoration:none} a:hover{text-decoration:underline}
+  .hero{background:linear-gradient(92deg,var(--amber),var(--gold));padding:22px 14px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+  .hero-inner{max-width:1100px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
   .avatar{width:72px;height:72px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,.7);background:#fff}
   .title{margin:0;font-size:26px;font-weight:900;letter-spacing:.2px}
   .tag{margin:4px 0 0;font-weight:600;color:#1c1c1c}
   .wrap{max-width:1100px;margin:16px auto 28px;padding:0 14px}
-  .bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;
-    background:var(--pill);border:1px solid var(--line);font-weight:700;cursor:pointer}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--pill);border:1px solid var(--line);font-weight:700;cursor:pointer}
   .btn.primary{background:#111;color:#fff;border-color:#111}
   .btn.warn{background:#fff1f1;border:1px solid #ffd2d2}
   .btn:disabled{opacity:.6;cursor:not-allowed}
   .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:#fff}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:16px;margin:12px 0;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 6px 18px rgba(0,0,0,.06)}
   h2{margin:0 0 10px;color:#a06a00;letter-spacing:.12em;text-transform:uppercase;font-size:14px}
   .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end}
   .grid label{font-size:12px;color:#5b4b25;font-weight:700}
-  .grid input,.grid textarea,.grid select{
-    width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff
-  }
+  .grid input,.grid textarea,.grid select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff}
   .grid textarea{min-height:90px;grid-column:span 6}
-  .grid .span-2{grid-column:span 2}
-  .grid .span-3{grid-column:span 3}
-  .grid .span-4{grid-column:span 4}
-  .grid .span-6{grid-column:span 6}
-  table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);
-    border-radius:12px;overflow:hidden;background:#fff}
+  .grid .span-2{grid-column:span 2} .grid .span-3{grid-column:span 3} .grid .span-4{grid-column:span 4} .grid .span-6{grid-column:span 6}
+  table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
   th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
   th{background:#fff7d1;font-weight:800;color:#5b4b25}
   tr:last-child td{border-bottom:none}
-  .pill-state{display:inline-block;padding:2px 8px;border:1px solid var(--line);
-    border-radius:999px;background:#fff7d1;font-size:12px}
+  .pill-state{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:999px;background:#fff7d1;font-size:12px}
   .ops{display:flex;gap:8px;flex-wrap:wrap}
   .letter{background:#fff;color:#000;padding:24px;border:1px solid var(--line);border-radius:16px}
-  .letter h3{margin:0 0 8px;font-size:20px}
-  .letter .meta{color:#444;margin-bottom:12px}
-  .letter hr{border:none;border-top:1px solid #ddd;margin:14px 0}
-  .letter .sig{margin-top:28px}
-  .print-note{font-size:12px;color:#666;margin-top:6px}
-  @media (max-width:900px){
-    .grid{grid-template-columns:1fr}
-    .grid .span-2,.grid .span-3,.grid .span-4,.grid .span-6{grid-column:span 1}
-  }
-  @media print{
-    .hero,.bar,.card:not(.letter){display:none}
-    .wrap{margin:0 auto}
-    .letter{border:none;border-radius:0;box-shadow:none}
-  }
+  .letter h3{margin:0 0 8px;font-size:20px} .letter .meta{color:#444;margin-bottom:12px} .letter hr{border:none;border-top:1px solid #ddd;margin:14px 0}
+  .letter .sig{margin-top:28px} .print-note{font-size:12px;color:#666;margin-top:6px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}.grid .span-2,.grid .span-3,.grid .span-4,.grid .span-6{grid-column:span 1}}
+  @media print{.hero,.bar,.card:not(.letter){display:none}.wrap{margin:0 auto}.letter{border:none;border-radius:0;box-shadow:none}}
 </style>
 </head>
 <body>
   <div class="hero">
     <div class="hero-inner">
-      <!-- Upload headshot.jpg to show your photo; hides automatically if not present -->
       <img src="headshot.jpg" class="avatar" alt="Moe headshot" onerror="this.style.display='none'">
       <div>
-        <h1 class="title">PMP Experience Tracker</h1>
-        <p class="tag">Moe Myint Kyal Sin · Project Manager / Creative Producer · La Puente, CA · <a href="mailto:msin2@csu.fullerton.edu">msin2@csu.fullerton.edu</a></p>
+        <h1 class="title">Moe Myint Kyal Sin — PMP Experience Tracker</h1>
+        <p class="tag">Project Manager / Creative Producer · La Puente, CA · <a href="mailto:msin2@csu.fullerton.edu">msin2@csu.fullerton.edu</a></p>
       </div>
     </div>
   </div>
@@ -87,69 +60,40 @@
       <button class="btn primary" id="addRowBtn">+ Add Project</button>
       <button class="btn" id="exportCsvBtn">Export CSV</button>
       <button class="btn" id="exportJsonBtn">Export JSON</button>
-      <label class="btn">
-        Import JSON <input id="importJsonInput" type="file" accept="application/json" style="display:none">
-      </label>
-      <span class="toggle">
-        <input type="checkbox" id="onlyVerifiedToggle">
-        <label for="onlyVerifiedToggle" style="cursor:pointer;">Sum Verified Hours only</label>
-      </span>
+      <label class="btn">Import JSON <input id="importJsonInput" type="file" accept="application/json" style="display:none"></label>
+      <span class="toggle"><input type="checkbox" id="onlyVerifiedToggle"><label for="onlyVerifiedToggle" style="cursor:pointer;">Sum Verified Hours only</label></span>
+      <a class="btn" href="spring2026resume.pdf" target="_blank">Download Résumé (PDF)</a>
       <button class="btn warn" id="clearAllBtn">Clear All (Local)</button>
+    </div>
+
+    <div class="bar">
+      <button class="btn" id="syncSheetsBtn">Sync to Google Sheets</button>
+      <button class="btn" id="loadSheetsBtn">Load from Google Sheets</button>
+      <small id="sheetsStatus" style="color:#6b6b6b"></small>
     </div>
 
     <!-- FORM -->
     <div class="card">
       <h2>Add / Edit Entry</h2>
       <div class="grid" id="formGrid">
-        <div class="span-3">
-          <label>Project Name</label>
-          <input id="f_project" placeholder="e.g., Guan Fitness Campaign (Titan PR)">
-        </div>
-        <div class="span-3">
-          <label>Organization</label>
-          <input id="f_org" placeholder="e.g., Titan Public Relations">
-        </div>
-
-        <div class="span-2">
-          <label>Your Role</label>
-          <input id="f_role" placeholder="e.g., Account Executive">
-        </div>
-        <div class="span-2">
-          <label>Start Date</label>
-          <input id="f_start" type="month" />
-        </div>
-        <div class="span-2">
-          <label>End Date</label>
-          <input id="f_end" type="month" />
-        </div>
-
-        <div class="span-2">
-          <label>Total Hours</label>
-          <input id="f_hours" type="number" min="0" step="1" placeholder="e.g., 150">
-        </div>
+        <div class="span-3"><label>Project Name</label><input id="f_project" placeholder="e.g., Guan Fitness Campaign (Titan PR)"></div>
+        <div class="span-3"><label>Organization</label><input id="f_org" placeholder="e.g., Titan Public Relations"></div>
+        <div class="span-2"><label>Your Role</label><input id="f_role" placeholder="e.g., Account Executive"></div>
+        <div class="span-2"><label>Start Date</label><input id="f_start" type="month" /></div>
+        <div class="span-2"><label>End Date</label><input id="f_end" type="month" /></div>
+        <div class="span-2"><label>Total Hours</label><input id="f_hours" type="number" min="0" step="1" placeholder="e.g., 150"></div>
         <div class="span-2">
           <label>Phases</label>
           <select id="f_phases" multiple size="5" title="Hold Ctrl/Cmd for multi-select">
-            <option>Initiation</option>
-            <option>Planning</option>
-            <option>Execution</option>
-            <option>Monitoring</option>
-            <option>Closing</option>
+            <option>Initiation</option><option>Planning</option><option>Execution</option><option>Monitoring</option><option>Closing</option>
           </select>
         </div>
-        <div class="span-2">
-          <label>Verified?</label>
-          <select id="f_verified">
-            <option value="Pending">Pending</option>
-            <option value="Verified">Verified</option>
-          </select>
+        <div class="span-2"><label>Verified?</label>
+          <select id="f_verified"><option value="Pending">Pending</option><option value="Verified">Verified</option></select>
         </div>
-
-        <div class="span-6">
-          <label>Responsibilities / Outcomes</label>
+        <div class="span-6"><label>Responsibilities / Outcomes</label>
           <textarea id="f_desc" placeholder="Briefly describe what you led and delivered..."></textarea>
         </div>
-
         <div class="span-6" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
           <button class="btn primary" id="saveBtn">Save Entry</button>
           <button class="btn" id="resetBtn">Reset Form</button>
@@ -162,23 +106,9 @@
       <h2>Experience Log</h2>
       <div style="overflow:auto">
         <table id="logTable">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>Organization</th>
-              <th>Role</th>
-              <th>Dates</th>
-              <th>Hours</th>
-              <th>Status</th>
-              <th>Ops</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Project</th><th>Organization</th><th>Role</th><th>Dates</th><th>Hours</th><th>Status</th><th>Ops</th></tr></thead>
           <tbody></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="7" id="totalCell"><strong>Total Hours:</strong> 0</td>
-            </tr>
-          </tfoot>
+          <tfoot><tr><td colspan="7" id="totalCell"><strong>Total Hours:</strong> 0</td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -209,7 +139,27 @@
 
 <script>
 (function(){
-  const LS_KEY = "moe_pmp_entries_v2";
+  // ====== CONFIG: paste your Google Web App URL after deploying (step 2) ======
+  const WEB_APP_URL = ""; // e.g., "https://script.google.com/macros/s/AKfycb.../exec"
+
+  // ====== Safe storage with fallback ======
+  const LS_KEY = "moe_pmp_entries_v3";
+  let memoryStore = [];
+  function safeGetLS(k){ try{ return localStorage.getItem(k); }catch(_){ return null; } }
+  function safeSetLS(k,v){ try{ localStorage.setItem(k,v); return true; }catch(_){ return false; } }
+
+  function load(){
+    const raw = safeGetLS(LS_KEY);
+    if(!raw){ return memoryStore; }
+    try{ return JSON.parse(raw)||[]; }catch(_){ return memoryStore; }
+  }
+  function saveEntries(arr){
+    if(!safeSetLS(LS_KEY, JSON.stringify(arr))){
+      // fallback to memory if localStorage blocked
+      memoryStore = arr.slice();
+    }
+  }
+
   let entries = load() || [];
   let editIndex = null;
   let sumVerifiedOnly = false;
@@ -219,6 +169,7 @@
   const letterCard = document.getElementById("letterCard");
   const letterBody = document.getElementById("letterBody");
   const onlyVerifiedToggle = document.getElementById("onlyVerifiedToggle");
+  const sheetsStatus = document.getElementById("sheetsStatus");
 
   const f_project = document.getElementById("f_project");
   const f_org     = document.getElementById("f_org");
@@ -230,137 +181,81 @@
   const f_verified= document.getElementById("f_verified");
   const f_desc    = document.getElementById("f_desc");
 
-  document.getElementById("addRowBtn").onclick = () => {
-    editIndex = null;
-    resetForm();
-    f_project.focus();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  document.getElementById("addRowBtn").onclick = () => { editIndex = null; resetForm(); f_project.focus(); window.scrollTo({ top: 0, behavior: "smooth" }); };
   document.getElementById("saveBtn").onclick = saveForm;
   document.getElementById("resetBtn").onclick = resetForm;
   document.getElementById("exportCsvBtn").onclick = exportCSV;
   document.getElementById("exportJsonBtn").onclick = exportJSON;
   document.getElementById("clearAllBtn").onclick = clearAll;
   document.getElementById("closeLetterBtn").onclick = () => { letterCard.style.display = "none"; };
+  document.getElementById("syncSheetsBtn").onclick = syncToSheets;
+  document.getElementById("loadSheetsBtn").onclick = loadFromSheets;
   onlyVerifiedToggle.onchange = () => { sumVerifiedOnly = onlyVerifiedToggle.checked; render(); };
 
   document.getElementById("importJsonInput").addEventListener("change", async (e)=>{
-    const file = e.target.files[0];
-    if(!file) return;
+    const file = e.target.files[0]; if(!file) return;
     const text = await file.text();
     try{
       const data = JSON.parse(text);
-      if(Array.isArray(data)){
-        entries = data;
-        save();
-        render();
-      } else {
-        alert("Invalid JSON structure. Expected an array.");
-      }
-    }catch(err){
-      alert("Could not parse JSON.");
-    }
+      if(Array.isArray(data)){ entries = data; saveEntries(entries); render(); }
+      else alert("Invalid JSON structure. Expected an array.");
+    }catch(err){ alert("Could not parse JSON."); }
     e.target.value = "";
   });
 
   function resetForm(){
-    f_project.value = "";
-    f_org.value = "";
-    f_role.value = "";
-    f_start.value = "";
-    f_end.value = "";
-    f_hours.value = "";
+    f_project.value = ""; f_org.value = ""; f_role.value = "";
+    f_start.value = ""; f_end.value = ""; f_hours.value = "";
     [...f_phases.options].forEach(o => o.selected = false);
-    f_verified.value = "Pending";
-    f_desc.value = "";
+    f_verified.value = "Pending"; f_desc.value = "";
   }
-
-  function getPhasesSelected(){
-    return [...f_phases.options].filter(o=>o.selected).map(o=>o.value);
-  }
+  function getPhasesSelected(){ return [...f_phases.options].filter(o=>o.selected).map(o=>o.value); }
 
   function saveForm(){
     const item = {
-      project: f_project.value.trim(),
-      org:     f_org.value.trim(),
-      role:    f_role.value.trim(),
-      start:   f_start.value,
-      end:     f_end.value,
-      hours:   Number(f_hours.value || 0),
-      phases:  getPhasesSelected(),
-      verified:f_verified.value,
-      desc:    f_desc.value.trim()
+      project: f_project.value.trim(), org: f_org.value.trim(), role: f_role.value.trim(),
+      start: f_start.value, end: f_end.value, hours: Number(f_hours.value || 0),
+      phases: getPhasesSelected(), verified: f_verified.value, desc: f_desc.value.trim()
     };
-    if(!item.project || !item.org || !item.role){
-      alert("Please fill Project, Organization, and Role.");
-      return;
-    }
-    if(editIndex===null){
-      entries.push(item);
-    }else{
-      entries[editIndex] = item;
-    }
-    save();
-    render();
-    resetForm();
-    editIndex = null;
+    if(!item.project || !item.org || !item.role){ alert("Please fill Project, Organization, and Role."); return; }
+    if(editIndex===null){ entries.push(item); } else { entries[editIndex] = item; }
+    saveEntries(entries); render(); resetForm(); editIndex = null;
   }
 
   function render(){
-    tableBody.innerHTML = "";
-    let total = 0;
+    tableBody.innerHTML = ""; let total = 0;
     entries.forEach((e,i)=>{
       const countable = (!sumVerifiedOnly) || (e.verified === "Verified");
       if(countable){ total += (e.hours||0); }
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><strong>${escapeHtml(e.project)}</strong><br><small>${escapeHtml(e.desc||"")}</small></td>
-        <td>${escapeHtml(e.org)}</td>
-        <td>${escapeHtml(e.role)}</td>
-        <td>${fmtDates(e.start,e.end)}</td>
-        <td>${e.hours||0}</td>
+        <td>${escapeHtml(e.org)}</td><td>${escapeHtml(e.role)}</td>
+        <td>${fmtDates(e.start,e.end)}</td><td>${e.hours||0}</td>
         <td><span class="pill-state">${escapeHtml(e.verified||"Pending")}</span></td>
         <td class="ops">
           <button class="btn" data-op="edit" data-i="${i}">Edit</button>
           <button class="btn warn" data-op="del" data-i="${i}">Delete</button>
           <button class="btn primary" data-op="letter" data-i="${i}">Generate Letter</button>
-        </td>
-      `;
+        </td>`;
       tableBody.appendChild(tr);
     });
     totalCell.innerHTML = `<strong>Total Hours${sumVerifiedOnly ? " (Verified):" : ":"}</strong> ${total}`;
     tableBody.querySelectorAll("button[data-op]").forEach(btn=>{
-      const op = btn.getAttribute("data-op");
-      const i  = Number(btn.getAttribute("data-i"));
+      const op = btn.getAttribute("data-op"); const i  = Number(btn.getAttribute("data-i"));
       btn.onclick = ()=> handleOp(op,i);
     });
   }
-
   function handleOp(op,i){
     if(op==="edit"){
-      const e = entries[i];
-      f_project.value = e.project||"";
-      f_org.value     = e.org||"";
-      f_role.value    = e.role||"";
-      f_start.value   = e.start||"";
-      f_end.value     = e.end||"";
-      f_hours.value   = e.hours||"";
+      const e = entries[i]; f_project.value=e.project||""; f_org.value=e.org||""; f_role.value=e.role||"";
+      f_start.value=e.start||""; f_end.value=e.end||""; f_hours.value=e.hours||"";
       [...f_phases.options].forEach(o => o.selected = (e.phases||[]).includes(o.value));
-      f_verified.value= e.verified||"Pending";
-      f_desc.value    = e.desc||"";
-      editIndex = i;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      f_verified.value=e.verified||"Pending"; f_desc.value=e.desc||""; editIndex=i; window.scrollTo({top:0,behavior:"smooth"});
     }
-    if(op==="del"){
-      if(confirm("Delete this entry?")){
-        entries.splice(i,1); save(); render();
-      }
-    }
-    if(op==="letter"){
-      showLetter(entries[i]);
-    }
+    if(op==="del"){ if(confirm("Delete this entry?")){ entries.splice(i,1); saveEntries(entries); render(); } }
+    if(op==="letter"){ showLetter(entries[i]); }
   }
-
   function showLetter(e){
     letterBody.innerHTML = `
       <p><strong>Project Name:</strong> ${escapeHtml(e.project)}</p>
@@ -368,68 +263,82 @@
       <p><strong>Duration:</strong> ${fmtDates(e.start,e.end)} &nbsp;&nbsp; <strong>Total Hours:</strong> ${e.hours||0}</p>
       <p><strong>Phases:</strong> ${escapeHtml((e.phases||[]).join(", ") || "—")}</p>
       <p><strong>Responsibilities & Outcomes:</strong><br>${nl2br(escapeHtml(e.desc||""))}</p>
-      <p><strong>Status:</strong> ${escapeHtml(e.verified||"Pending")}</p>
-    `;
-    letterCard.style.display = "block";
-    letterCard.scrollIntoView({behavior:"smooth"});
+      <p><strong>Status:</strong> ${escapeHtml(e.verified||"Pending")}</p>`;
+    letterCard.style.display = "block"; letterCard.scrollIntoView({behavior:"smooth"});
   }
 
-  function save(){ localStorage.setItem(LS_KEY, JSON.stringify(entries)); }
-  function load(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||"[]"); }catch(_){ return []; } }
-
+  // ====== Robust downloads (CSV/JSON) ======
+  function triggerDownload(filename, mime, data){
+    try{
+      const blob = new Blob([data], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    }catch(e){
+      // Fallback: open in new tab (Safari/strict contexts)
+      const url = "data:"+mime+";charset=utf-8," + encodeURIComponent(data);
+      window.open(url, "_blank");
+    }
+  }
   function exportCSV(){
     if(!entries.length){ alert("No entries to export."); return; }
     const cols = ["Project","Organization","Role","Start","End","Hours","Phases","Verified","Description"];
     const lines = [cols.join(",")];
     entries.forEach(e=>{
       const row = [
-        q(e.project), q(e.org), q(e.role),
-        q(e.start), q(e.end), e.hours||0,
-        q((e.phases||[]).join("; ")), q(e.verified||"Pending"), q(e.desc||"")
+        q(e.project), q(e.org), q(e.role), q(e.start), q(e.end),
+        e.hours||0, q((e.phases||[]).join("; ")), q(e.verified||"Pending"), q(e.desc||"")
       ];
       lines.push(row.join(","));
     });
-    downloadText("pmp_experience.csv", lines.join("\\n"));
+    triggerDownload("pmp_experience.csv","text/csv", lines.join("\n"));
   }
   function exportJSON(){
-    downloadText("pmp_experience.json", JSON.stringify(entries,null,2));
+    triggerDownload("pmp_experience.json","application/json", JSON.stringify(entries,null,2));
   }
-  function clearAll(){
-    if(confirm("Clear all saved entries from this browser?")){
-      entries = []; save(); render();
-    }
+  function clearAll(){ if(confirm("Clear all saved entries from this browser?")){ entries = []; saveEntries(entries); render(); }}
+
+  // ====== Google Sheets sync (Apps Script web app) ======
+  async function syncToSheets(){
+    if(!WEB_APP_URL){ alert("Set WEB_APP_URL in the code first."); return; }
+    sheetsStatus.textContent = "Syncing…";
+    try{
+      const res = await fetch(WEB_APP_URL, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ action:"bulkReplace", entries }) });
+      const json = await res.json();
+      sheetsStatus.textContent = json.ok ? "Synced to Google Sheets ✅" : ("Error: "+(json.error||"Unknown"));
+    }catch(err){ sheetsStatus.textContent = "Network error syncing to Sheets."; }
   }
-  function downloadText(filename, text){
-    const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url; a.download = filename; a.click();
-    URL.revokeObjectURL(url);
+  async function loadFromSheets(){
+    if(!WEB_APP_URL){ alert("Set WEB_APP_URL in the code first."); return; }
+    sheetsStatus.textContent = "Loading…";
+    try{
+      const res = await fetch(WEB_APP_URL+"?action=list");
+      const json = await res.json();
+      if(json.ok && Array.isArray(json.entries)){ entries = json.entries; saveEntries(entries); render(); sheetsStatus.textContent = "Loaded from Google Sheets ✅"; }
+      else{ sheetsStatus.textContent = "Error loading from Sheets."; }
+    }catch(err){ sheetsStatus.textContent = "Network error loading from Sheets."; }
   }
-  function escapeHtml(s){ return (s||"").replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;' }[c] )); }
-  function nl2br(s){ return s.replace(/\\n/g,"<br>"); }
-  function fmtDates(start,end){
-    const f = v => v ? v.replace("-","/") : "—";
-    return `${f(start)} – ${f(end)}`;
-  }
-  function q(s){
-    if(s==null) return '\"\"';
-    const t = (\"\"+s).replace(/\"/g,'\"\"');
-    return `\"${t}\"`;
-  }
+
+  // ====== helpers ======
+  function escapeHtml(s){ return (s||"").replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;' }[c] )); }
+  function nl2br(s){ return s.replace(/\n/g,"<br>"); }
+  function fmtDates(start,end){ const f = v => v ? v.replace("-","/") : "—"; return `${f(start)} – ${f(end)}`; }
+  function q(s){ if(s==null) return '""'; const t = (""+s).replace(/"/g,'""'); return `"${t}"`; }
+
+  // seed (one-time if nothing saved)
   if(!entries.length){
     entries = [
-      {project:"Account Coordinator (Litterbox)", org:"Titan Public Relations", role:"Account Coordinator",
-       start:"2024-09", end:"2024-12", hours:130, phases:["Planning","Execution"], verified:"Pending",
-       desc:"Developed social media content strategy and outreach for Litterbox EDM campaign; coordinated tabling and behind-the-scenes content."},
-      {project:"Account Executive (Guan Fitness)", org:"Titan Public Relations", role:"Account Executive",
-       start:"2025-09", end:"2025-12", hours:150, phases:["Initiation","Planning","Execution"], verified:"Pending",
-       desc:"Led team and client relationships; delivered brand identity, social strategy, website & collateral for 12-week program."}
+      {project:"Account Coordinator (Litterbox)", org:"Titan Public Relations", role:"Account Coordinator", start:"2024-09", end:"2024-12", hours:130, phases:["Planning","Execution"], verified:"Pending", desc:"Developed social media content strategy and outreach for Litterbox EDM campaign; coordinated tabling and behind-the-scenes content."},
+      {project:"Account Executive (Guan Fitness)", org:"Titan Public Relations", role:"Account Executive", start:"2025-09", end:"2025-12", hours:150, phases:["Initiation","Planning","Execution"], verified:"Pending", desc:"Led team and client relationships; delivered brand identity, social strategy, website & collateral for 12-week program."}
     ];
-    save();
+    saveEntries(entries);
   }
+
   render();
 })();
 </script>
 </body>
 </html>
+
